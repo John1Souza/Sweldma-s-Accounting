@@ -4,93 +4,334 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cordel Moderno</title>
-    <link rel="stylesheet" href="estilo/style.css">
-</head>
-<body>
-    <header>
-        <h1>Cordel Moderno</h1>
-        <p>Por <a href="https://www.recantodasletras.com.br/poesias/3186743" target="_blank">Milton Duarte</a></p>        
-    </header>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          border: 0;
+          box-sizing: border-box;
+        }
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+         
+        }
 
-    <section class="normal">
-        <p>
-            Estou ficando cansado <br>
-            Da tal tecnologia <br>
-            Só se fala por e-mail <br>
-            Mensagem curta e fria <br>
-            Twitter e Facebook <br>
-            Antes que eu caduque <br>
-            Vou dizer tudo em poesia.
-        </p>
-    </section>
+        form {
+          background-color: #fff;
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          width: 100;
+          //max-width: 400px; /* Optional: Set a max-width for larger screens */
+          height: 95%;
+          display: flex;
+          flex-direction: column; /* Align items vertically */
+        }
     
-
-    <section class="imagem" id="img01">
-        <p>
-            Não é mais como era antes <br>
-            É tudo abreviado <br>
-            "Você" só tem duas letras <br>
-            O "O" e o "E" foi riscado <br>
-            Para declarar o amor <br>
-            Basta botar uma flor <br>
-            E um coração desenhado.
-        </p>
-    </section>    
-
-    <section class="normal">
-        <p>
-            Arroba agora não pesa <br>
-            É parte de um endereço <br>
-            Ponto final nem se usa <br>
-            Ou vai até no começo <br>
-            Agora é .com <br>
-            Se o saite é muito bom <br>
-            Ele vale um alto preço. <br>
-            Pra piorar a liguagem <br>
-            O emoticom é um risco <br>
-            Tem símbolo para tudo <br>
-            Ponto e vírgula e um asterisco <br>
-            Um beijo significa <br>
-            Pra entender como fica <br>
-            Decifre esse rabisco.
-        </p>
-    </section>
-
+        label {
+            width: 30%;
+            height: 35px;
+          display: flex;
+          margin-bottom: 5px;
+          font-size: 0.95rem;
+          margin-right: 2px;
+          background-color: lightgray;
+          color: #000;
+          font-weight: bold;
+          text-align: center;
+          padding: 5px;
+          border-radius: 2px;
+          border: 1px solid black;
+        }
     
+        input {
+          width: 25%;
+          height: 35px;
+          padding: 2px;
+          margin-bottom: 8px;
+          box-sizing: border-box;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          text-decoration: none;
+          margin-right: 2px;
+          border: 1px solid black;
+        }
+    
+        button {
+          background-color: #4caf50;
+          color: #fff;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+    
+        button:hover {
+          background-color: #45a049;
+        }
+        header{
+            background-color: lightgray;
+            width: 100;
+            height: 40px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            top: 0;
+        }
+        
+        h1   {color: blue;}
+        p    {color: red;}
+        .first_section{
+            width: 80vw;
+            height: 90vh;
+            align-items: center;
+            border: 2px solid black;
+            margin: 0 auto;
+        }
+        table {
+          width: 100%;
+	height: 30px;
+          border-collapse: collapse;
+          margin-bottom: 20px;
+          font-size: 1rem;
+        }
+    
+        th, td {
+		width: 20px;
+		height: 20px;
+          border: 1px solid #ddd;
+          padding: 5px;
+          text-align: center;
+        }
+    
+        th {
+          //background-color: #4caf50;
+		background-color: lightgray;
+          color: black
+        }
+        .last_label{
+            margin-top: 20px;
+		margin-bottom: 30px;
+        }
+        .form_head{
+            width: 100;
+            height: 30px;
+            display: flex;
+            justify-content: space-evenly;
+            font-size: 0.8rem;
+            color: #000;
+        }
+	.span_labels{
+            width: 20%;
+            height: 35px;
+          display: flex;
+          font-size: 0.75rem;
+          margin-right: 2px;
+          background-color: lightgray;
+          color: #000;
+          font-weight: bold;
+          text-align: center;
+          align-items: center;
+          padding: 5px;
+          border-radius: 2px;
+          border: 1px solid black;
+        }
+	.head_h2{
+		margin: 0 auto;
+	}
+        #header_text{
+            color: black;
+        }
+        
+        #label_one{
+            display: flex;
+        }
+        .span_labels_result{
+            width: 20%;
+            height: 35px;
+          display: flex;
+          font-size: 0.75rem;
+          margin-right: 5px;
+          color: #000;
+          font-weight: bold;
+          text-align: center;
+          align-items: center;
+          padding: 5px;
+          border-radius: 2px;
+          border: 1px solid black;
+        }
+        
+        #label7{
+            width: 45%;
+        }
+    </style>
 
-    <section class="imagem" id="img02">
-        <p>
-            Tenho saudade das cartas <br>
-            Escritas com a própria mão <br>
-            Mandava no mês de Junho <br>
-            Só chegava no Verão <br>
-            Mas matava a saudade <br>
-            Era texto de verdade <br>
-            Nas linhas do coração.
-        </p>
-    </section>    
-
-    <section class="normal  ">
-        <p>
-            Agora, escrevo e envio <br>
-            Chegando na mesma hora <br>
-            Mas quando vou prosear <br>
-            A pessoa foi embora <br>
-            Abriu outro aplicativo <br>
-            O mundo ficou cativo <br>
-            Da tecnologia do agora. <br>
-            Felizmente, pra orar <br>
-            Não precisa de internet <br>
-            Deus escuta todo mundo <br>
-            Se quiser, faça esse teste <br>
-            Dois pontos são dois joelhos <br>
-            Seus lábios são aparelhos <br>
-            Deixe que Deus interprete.
-        </p>
+    <title>Sweldma Calculator</title>
+  </head>
+  <body>
+      <header>
+          <head>
+                <h1 id="header_text">CALCULADORA - HORAS COORDENAÇÃO</h1>
+            </head>
+      </header>
+    <section class="first_section">
+        <header class="form_head">
+                <h2 class="head_h2">Item</h2>
+                <h2 class="head_h2">Qtde</h2>
+                <h2 class="head_h2">∆t em minutos</h2>
+            </header>
+        <form>
+            
+            <div id="label_one">
+                <label for="label1">Tempo ao vivo </label>
+                <input type="text" id="label1" name="label1">
+                <span class="span_labels" id="span_label_one"></span>
+                <span class="span_labels_result"></span>
+            </div>
+            <div id="label_one">
+                 <label for="label2">Página (nº carateres ≥1250)</label>
+                <input type="text" id="label2" name="label2">
+                <span class="span_labels" id="span_label_two">00:10:00</span>
+                <span class="span_labels_result" id="span_result_two">00:00:00</span>
+            </div>
+            <div id="label_one">
+                <label for="label3">Slides</label>
+                <input type="number" id="label3" name="label3">
+                <span class="span_labels" id="span_label_three">00:02:00</span>
+                <span class="span_labels_result" id="span_result_three">00:00:00</span>
+            </div>
+            <div id="label_one">
+                <label for="label4">Questões discursivas </label>
+                <input type="number" id="label4" name="label4">
+                <span class="span_labels" id="span_label_four">00:03:00</span>
+                <span class="span_labels_result" id="span_result_four">00:00:00</span>
+            </div>
+            <div id="label_one">
+                <label for="label5">Questões objetivas</label>
+                <input type="number" id="label5" name="label5">
+                <span class="span_labels" id="span_label_five">00:02:00</span>
+                <span class="span_labels_result" id="span_result_five">00:00:00</span>
+            </div>
+            <div id="label_one">
+                <label for="label6">Infográfico (nº carateres ≥650)</label>
+                <input type="number" id="label6" name="label6">
+                <span class="span_labels" id="span_label_six">00:10:00</span>
+                <span class="span_labels_result" id="span_result_six">00:00:00</span>
+            </div>
+            
+            <div id="label_one">
+                <label for="label7">Material audio-visual</label>
+                <input type="number" id="label7" name="label7">
+                <span class="span_labels_result">00:00:00</span>
+            </div>
+            
+            <div id="label_one" class="last_label">
+                <label for="label8">Carga horária (participante)</label>
+                <input type="number" id="label8" name="label8">
+            </div>
+            
+             <table>
+                
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Ch evento</th>
+                    <th>∆t em minutos</th>
+                    <th>Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                        Carga horária instrutor 1 (preparação de material didático/correções de atividades em eventos presenciais)
+                    </td>
+                    <td>Text here</td>
+                    <td>Text here</td>
+                    <td>*distribuídas entre os instrutores responsáveis.</td>
+                  </tr>
+                </tbody>
+              </table>
+            
+              <table>
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Ch evento</th>
+                    <th>∆t em minutos</th>
+                    <th>Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                        Carga horária instrutor 1 (preparação de material didático/correções de atividades em eventos presenciais)
+                    </td>
+                    <td>Text here</td>
+                    <td>Text here</td>
+                    <td>*distribuídas entre os instrutores responsáveis.</td>
+                  </tr>
+                </tbody>
+              </table>
+           <button type="submit" id="myButton">Submit</button>
+          </form>
     </section>
-    <footer>
-        <p>Site criado por <a href="https://gustavoguanabara.github.io" target="_blank">Gustavo Guanabara</a> para o <a href="https://www.cursoemvideo.com" target="_blank">Curso em Vídeo</a></p>
-    </footer>
-</body>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+
+    <!-- Simple lightbox -->
+    <script src="assets/js/simple-lightbox.min.js"></script>
+    <script>
+      
+        let span_page = 600;
+	    let span_slide= 120;
+	    let span_quest_dis = 180;
+	    let span_quest_obj = 120;
+	    let span_info = 600;
+	    let span_mat = 0;
+	    
+        
+    	let myButton = document.getElementById('myButton');
+    	myButton.addEventListener('click', () => {
+		let page_input = document.getElementById('label2').value;
+		let slide_input = document.getElementById('label3').value;
+		let quest_dis_input = document.getElementById('label4').value;
+		let quest_obj_input = document.getElementById('label5').value;
+		let info_input = document.getElementById('label6').value;
+		
+		const span_list = new Array(span_page, span_slide, span_quest_dis,span_quest_obj, span_info);
+		const labels_list = new Array(page_input, slide_input, quest_dis_input, quest_obj_input, info_input);
+		const span_results_list = new Array("two", "three", "four", "five", "six");
+		event.preventDefault();
+		function calculateHoursAndMinutes(totalSeconds) {
+     		 // Calculate hours and remaining minutes
+      			var secondsToConvert = totalSeconds / 60;
+    			var hours = Math.floor(secondsToConvert / 60);
+                var minutes = secondsToConvert % 60;
+          		
+    			if(hours == 0 || hours < 10){
+    				var hours = "0" + hours;				
+    			}
+    			if(minutes == 0 || minutes < 10){
+    				var minutes = "0" + minutes;
+    			}
+						
+			    console.log(hours, minutes);
+			    var formated_hours = hours + ":" + minutes + ":00";
+     		 	return formated_hours;
+			    var hours = 0;
+      			var minutes = 0;
+        	}
+    		for(let i = 0; i < labels_list.length; i++){
+			var total_seconds = span_list[i] * labels_list[i];
+                var result = calculateHoursAndMinutes(total_seconds);
+			console.log(span_list[i], labels_list[i], span_results_list[i], total_seconds);
+                document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
+    		}
+    		});
+    </script>
+  </body>
 </html>
