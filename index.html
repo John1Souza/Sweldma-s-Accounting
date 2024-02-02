@@ -320,17 +320,21 @@
     				var minutes = "0" + minutes;
     			}
 						
-			    console.log(hours, minutes);
-			    var formated_hours = hours + ":" + minutes + ":00";
+		    	console.log(hours, minutes);
+		    	var formated_hours = hours + ":" + minutes + ":00";
      		 	return formated_hours;
-			    var hours = 0;
+		   	var hours = 0;
       			var minutes = 0;
         	}
     		for(let i = 0; i < labels_list.length; i++){
 			var total_seconds = span_list[i] * labels_list[i];
-                var result = calculateHoursAndMinutes(total_seconds);
+                	var result = calculateHoursAndMinutes(total_seconds);
 			console.log(span_list[i], labels_list[i], span_results_list[i], total_seconds);
-                document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
+			if(i == 5){
+				result = mat_input * 3;
+				document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
+			}
+                	document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
     		}
     		});
     </script>
