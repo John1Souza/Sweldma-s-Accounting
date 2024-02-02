@@ -331,7 +331,7 @@
                 	var result = calculateHoursAndMinutes(total_seconds);
 			console.log(span_list[i], labels_list[i], span_results_list[i], total_seconds);
 			if(i == 5){
-				result = mat_input * 3;
+				result = calculateHoursAndMinutes(labels_list[i] * 3);
 				document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
 			}
                 	document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
