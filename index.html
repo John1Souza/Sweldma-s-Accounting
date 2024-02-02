@@ -59,6 +59,8 @@
         }
     
         button {
+		width: 150px;
+		height: 50px;
           background-color: #4caf50;
           color: #fff;
           padding: 10px 20px;
@@ -73,11 +75,13 @@
         header{
             background-color: lightgray;
             width: 100;
-            height: 40px;
+            height: 50px;
             display: flex;
             justify-content: space-around;
             align-items: center;
             top: 0;
+		margin-bottom: 20px;
+		padding: 10px;
         }
         
         h1   {color: blue;}
@@ -91,7 +95,7 @@
         }
         table {
           width: 100%;
-	height: 30px;
+	height: 200px;
           border-collapse: collapse;
           margin-bottom: 20px;
           font-size: 1rem;
@@ -142,6 +146,7 @@
 	}
         #header_text{
             color: black;
+		
         }
         
         #label_one{
@@ -165,15 +170,30 @@
         #label7{
             width: 45%;
         }
+	#button_wrapper{
+		width: 100;
+		display: flex;
+		justify-content: space-evenly;
+		
+	}
+	#clean_button{
+		background-color: red;
+		color: #fff
+	}
+	#clean_button:hover{
+		background-color: #b81414;
+	}
+	#span_result_eight{
+		width: 25%;
+		border-radius: 5px;
+	}
     </style>
 
     <title>Sweldma Calculator</title>
   </head>
   <body>
       <header>
-          <head>
-                <h1 id="header_text">CALCULADORA - HORAS COORDENAÇÃO</h1>
-            </head>
+		<h1 id="header_text">CALCULADORA - HORAS COORDENAÇÃO</h1>
       </header>
     <section class="first_section">
         <header class="form_head">
@@ -187,7 +207,7 @@
                 <label for="label1">Tempo ao vivo </label>
                 <input type="text" id="label1" name="label1">
                 <span class="span_labels" id="span_label_one"></span>
-                <span class="span_labels_result"></span>
+                <span class="span_labels_result" id="span_result_one">00:00:00</span>
             </div>
             <div id="label_one">
                  <label for="label2">Página (nº carateres ≥1250)</label>
@@ -227,8 +247,8 @@
             </div>
             
             <div id="label_one" class="last_label">
-                <label for="label8">Carga horária (participante)</label>
-                <input type="number" id="label8" name="label8">
+                <label>Carga horária (participante)</label>
+                <span class="span_labels_result" id="span_result_eight">00:00:00</span>
             </div>
             
              <table>
@@ -246,34 +266,18 @@
                     <td>
                         Carga horária instrutor 1 (preparação de material didático/correções de atividades em eventos presenciais)
                     </td>
-                    <td>Text here</td>
-                    <td>Text here</td>
+                    <td><span id="span_ch_event">00:00:00</span></td>
+                    <td><span id="span_delta_t">00:00:00</span></td>
                     <td>*distribuídas entre os instrutores responsáveis.</td>
                   </tr>
                 </tbody>
               </table>
             
-              <table>
-                <thead>
-                  <tr>
-                    <th>Item</th>
-                    <th>Ch evento</th>
-                    <th>∆t em minutos</th>
-                    <th>Subtotal</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                        Carga horária instrutor 1 (preparação de material didático/correções de atividades em eventos presenciais)
-                    </td>
-                    <td>Text here</td>
-                    <td>Text here</td>
-                    <td>*distribuídas entre os instrutores responsáveis.</td>
-                  </tr>
-                </tbody>
-              </table>
-           <button type="submit" id="myButton">Submit</button>
+		<div id="button_wrapper">
+			<button type="submit" class="myButton" id="calc_button">Calcular</button>
+			<button type="submit" class="myButton" id="clean_button">Limpar</button>
+		</div>
+           	
           </form>
     </section>
 
@@ -285,59 +289,110 @@
     <!-- Simple lightbox -->
     <script src="assets/js/simple-lightbox.min.js"></script>
     <script>
-      
+
+    	let span_live = 0;
 	let span_page = 600;
 	 let span_slide= 120;
 	let span_quest_dis = 180;
 	let span_quest_obj = 120;
 	let span_info = 600;
 	let span_mat = 0;
+	let span_carga = 0;
+	let delta_t = 0;
     
 
-	let myButton = document.getElementById('myButton');
-	myButton.addEventListener('click', () => {
-	let page_input = document.getElementById('label2').value;
-	let slide_input = document.getElementById('label3').value;
-	let quest_dis_input = document.getElementById('label4').value;
-	let quest_obj_input = document.getElementById('label5').value;
-	let info_input = document.getElementById('label6').value;
-	let mat_input = document.getElementById('label7').value;
-	
-	const span_list = new Array(span_page, span_slide, span_quest_dis,span_quest_obj, span_info, span_mat);
-	const labels_list = new Array(page_input, slide_input, quest_dis_input, quest_obj_input, info_input, mat_input);
-	const span_results_list = new Array("two", "three", "four", "five", "six", "seven");
-	event.preventDefault();
-	function calculateHoursAndMinutes(totalSeconds) {
-	 // Calculate hours and remaining minutes
-		var secondsToConvert = totalSeconds / 60;
-		var hours = Math.floor(secondsToConvert / 60);
-		var minutes = secondsToConvert % 60;
+	let calc_button = document.getElementById('calc_button');
+	calc_button.addEventListener('click', () => {
+		var live_input = document.getElementById('label1').value;
+		var page_input = document.getElementById('label2').value;
+		var slide_input = document.getElementById('label3').value;
+		var quest_dis_input = document.getElementById('label4').value;
+		var quest_obj_input = document.getElementById('label5').value;
+		var info_input = document.getElementById('label6').value;
+		var mat_input = document.getElementById('label7').value;
+		var carga_input = 0;
 		
-		if(hours == 0 || hours < 10){
-			var hours = "0" + hours;				
+		
+		const span_list = new Array(span_live, span_page, span_slide, span_quest_dis,span_quest_obj, span_info, span_mat, span_carga);
+		const labels_list = new Array(live_input, page_input, slide_input, quest_dis_input, quest_obj_input, info_input, mat_input, carga_input);
+		const span_results_list = new Array("one","two", "three", "four", "five", "six", "seven", "eight");
+		event.preventDefault();
+		function calculateHoursAndMinutes(totalSeconds) {
+		 // Calculate hours and remaining minutes
+			var secondsToConvert = totalSeconds / 60;
+			var hours = Math.floor(secondsToConvert / 60);
+			var minutes = Math.floor(secondsToConvert % 60);
+			var seconds = ((secondsToConvert % 60) - minutes)*60;
+			if(minutes % 60 != 0 ){
+				
+			}
+			if(hours == 0 || hours < 10){
+				hours = "0" + hours;				
+			}
+			if(minutes == 0 || minutes < 10){
+				minutes = "0" + minutes;
+			}
+			if(seconds == 0 || seconds < 10){
+				seconds = "0" + seconds;
+			}			
+			//console.log(hours, minutes);
+			
+			var formated_hours = hours + ":" + minutes + ":" + seconds ;
+			return formated_hours;
+			var hours = 0;
+			var minutes = 0;
 		}
-		if(minutes == 0 || minutes < 10){
-			var minutes = "0" + minutes;
-		}
-					
-		console.log(hours, minutes);
-		var formated_hours = hours + ":" + minutes + ":00";
-		return formated_hours;
-		var hours = 0;
-		var minutes = 0;
-	}
-	for(let i = 0; i < labels_list.length; i++){
-		var total_seconds = span_list[i] * labels_list[i];
-		var result = calculateHoursAndMinutes(total_seconds);
-		console.log(span_list[i], labels_list[i], span_results_list[i], total_seconds);
-		if(i == 5){
-			span_list[i] = labels_list[i];
-			total_seconds = span_list[i] * 3;
-			result = calculateHoursAndMinutes(total_seconds);
+		for(let i = 0; i < labels_list.length; i++){
+			var total_seconds = span_list[i] * labels_list[i];
+			var result = calculateHoursAndMinutes(total_seconds);
+			
+			span_carga += total_seconds;
+			if(i == 6){
+				span_list[i] = labels_list[i] * 60;
+				total_seconds = span_list[i] * 3;
+				result = calculateHoursAndMinutes(total_seconds);
+				span_carga += total_seconds;
+				document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
+			}else if(i == 0){
+				span_list[i] = labels_list[i] * 60;
+				total_seconds = span_list[i];
+				result = calculateHoursAndMinutes(total_seconds);
+				span_carga += total_seconds;
+				document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
+			}else if(i == 7){
+				
+				result = calculateHoursAndMinutes(span_carga);
+				document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
+				document.getElementById(`span_ch_event`).innerHTML = result;
+				delta_t = span_carga * 1.5;
+				result_delta_t = calculateHoursAndMinutes(delta_t);
+				document.getElementById(`span_delta_t`).innerHTML = result_delta_t;
+				span_carga = 0;
+				
+			}
+			
 			document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
+			
 		}
-		document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
-	}
+	});
+	let clean_button = document.getElementById('clean_button');
+	clean_button.addEventListener('click', () => {
+		
+		const span_results_list = new Array("one","two", "three", "four", "five", "six", "seven");
+		event.preventDefault();
+		for(let i = 0; i <= span_results_list.length; i++){
+			
+			
+			document.getElementById(`label${i + 1}`).innerHTML = "";
+			document.getElementById(`span_result_${span_results_list[i]}`).value = "00:00:00";	
+			
+			
+			//document.getElementById(`label${i}`).focus();
+			
+
+			document.getElementById(`span_ch_event`).innerHTML = "00:00:00";
+			document.getElementById(`span_delta_t`).innerHTML = "00:00:00";
+		}
 	});
     </script>
   </body>
