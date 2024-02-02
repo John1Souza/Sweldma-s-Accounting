@@ -197,32 +197,32 @@
             </div>
             <div id="label_one">
                 <label for="label3">Slides</label>
-                <input type="number" id="label3" name="label3">
+                <input type="text" id="label3" name="label3">
                 <span class="span_labels" id="span_label_three">00:02:00</span>
                 <span class="span_labels_result" id="span_result_three">00:00:00</span>
             </div>
             <div id="label_one">
                 <label for="label4">Questões discursivas </label>
-                <input type="number" id="label4" name="label4">
+                <input type="text" id="label4" name="label4">
                 <span class="span_labels" id="span_label_four">00:03:00</span>
                 <span class="span_labels_result" id="span_result_four">00:00:00</span>
             </div>
             <div id="label_one">
                 <label for="label5">Questões objetivas</label>
-                <input type="number" id="label5" name="label5">
+                <input type="text" id="label5" name="label5">
                 <span class="span_labels" id="span_label_five">00:02:00</span>
                 <span class="span_labels_result" id="span_result_five">00:00:00</span>
             </div>
             <div id="label_one">
                 <label for="label6">Infográfico (nº carateres ≥650)</label>
-                <input type="number" id="label6" name="label6">
+                <input type="text" id="label6" name="label6">
                 <span class="span_labels" id="span_label_six">00:10:00</span>
                 <span class="span_labels_result" id="span_result_six">00:00:00</span>
             </div>
             
             <div id="label_one">
                 <label for="label7">Material audio-visual</label>
-                <input type="number" id="label7" name="label7">
+                <input type="text" id="label7" name="label7">
                 <span class="span_labels_result" id="span_result_seven">00:00:00</span>
             </div>
             
@@ -286,57 +286,59 @@
     <script src="assets/js/simple-lightbox.min.js"></script>
     <script>
       
-        let span_page = 600;
-	    let span_slide= 120;
-	    let span_quest_dis = 180;
-	    let span_quest_obj = 120;
-	    let span_info = 600;
-	    let span_mat = 0;
-	    
-        
-    	let myButton = document.getElementById('myButton');
-    	myButton.addEventListener('click', () => {
-		let page_input = document.getElementById('label2').value;
-		let slide_input = document.getElementById('label3').value;
-		let quest_dis_input = document.getElementById('label4').value;
-		let quest_obj_input = document.getElementById('label5').value;
-		let info_input = document.getElementById('label6').value;
-		let mat_input = document.getElementById('label7').value;
+	let span_page = 600;
+	 let span_slide= 120;
+	let span_quest_dis = 180;
+	let span_quest_obj = 120;
+	let span_info = 600;
+	let span_mat = 0;
+    
+
+	let myButton = document.getElementById('myButton');
+	myButton.addEventListener('click', () => {
+	let page_input = document.getElementById('label2').value;
+	let slide_input = document.getElementById('label3').value;
+	let quest_dis_input = document.getElementById('label4').value;
+	let quest_obj_input = document.getElementById('label5').value;
+	let info_input = document.getElementById('label6').value;
+	let mat_input = document.getElementById('label7').value;
+	
+	const span_list = new Array(span_page, span_slide, span_quest_dis,span_quest_obj, span_info, span_mat);
+	const labels_list = new Array(page_input, slide_input, quest_dis_input, quest_obj_input, info_input, mat_input);
+	const span_results_list = new Array("two", "three", "four", "five", "six", "seven");
+	event.preventDefault();
+	function calculateHoursAndMinutes(totalSeconds) {
+	 // Calculate hours and remaining minutes
+		var secondsToConvert = totalSeconds / 60;
+		var hours = Math.floor(secondsToConvert / 60);
+		var minutes = secondsToConvert % 60;
 		
-		const span_list = new Array(span_page, span_slide, span_quest_dis,span_quest_obj, span_info);
-		const labels_list = new Array(page_input, slide_input, quest_dis_input, quest_obj_input, info_input, mat_input);
-		const span_results_list = new Array("two", "three", "four", "five", "six", "seven");
-		event.preventDefault();
-		function calculateHoursAndMinutes(totalSeconds) {
-     		 // Calculate hours and remaining minutes
-      			var secondsToConvert = totalSeconds / 60;
-    			var hours = Math.floor(secondsToConvert / 60);
-                var minutes = secondsToConvert % 60;
-          		
-    			if(hours == 0 || hours < 10){
-    				var hours = "0" + hours;				
-    			}
-    			if(minutes == 0 || minutes < 10){
-    				var minutes = "0" + minutes;
-    			}
-						
-		    	console.log(hours, minutes);
-		    	var formated_hours = hours + ":" + minutes + ":00";
-     		 	return formated_hours;
-		   	var hours = 0;
-      			var minutes = 0;
-        	}
-    		for(let i = 0; i < labels_list.length; i++){
-			var total_seconds = span_list[i] * labels_list[i];
-                	var result = calculateHoursAndMinutes(total_seconds);
-			console.log(span_list[i], labels_list[i], span_results_list[i], total_seconds);
-			if(i == 5){
-				result = calculateHoursAndMinutes(labels_list[i] * 3);
-				document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
-			}
-                	document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
-    		}
-    		});
+		if(hours == 0 || hours < 10){
+			var hours = "0" + hours;				
+		}
+		if(minutes == 0 || minutes < 10){
+			var minutes = "0" + minutes;
+		}
+					
+		console.log(hours, minutes);
+		var formated_hours = hours + ":" + minutes + ":00";
+		return formated_hours;
+		var hours = 0;
+		var minutes = 0;
+	}
+	for(let i = 0; i < labels_list.length; i++){
+		var total_seconds = span_list[i] * labels_list[i];
+		var result = calculateHoursAndMinutes(total_seconds);
+		console.log(span_list[i], labels_list[i], span_results_list[i], total_seconds);
+		if(i == 5){
+			span_list[i] = labels_list[i];
+			total_seconds = span_list[i] * 3;
+			result = calculateHoursAndMinutes(total_seconds);
+			document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
+		}
+		document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
+	}
+	});
     </script>
   </body>
 </html>
