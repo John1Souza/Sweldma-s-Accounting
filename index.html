@@ -191,7 +191,7 @@
 
     <title>Sweldma Calculator</title>
   </head>
-  <body>
+  <body onload="cleanField()">
       <header>
 		<h1 id="header_text">CALCULADORA - HORAS COORDENAÇÃO</h1>
       </header>
@@ -275,7 +275,7 @@
             
 		<div id="button_wrapper">
 			<button type="submit" class="myButton" id="calc_button">Calcular</button>
-			<button type="submit" class="myButton" id="clean_button">Limpar</button>
+			<button type="submit" class="myButton" id="clean_button" onclick="cleanField()">Limpar</button>
 		</div>
            	
           </form>
@@ -375,25 +375,24 @@
 			
 		}
 	});
-	let clean_button = document.getElementById('clean_button');
-	clean_button.addEventListener('click', () => {
+	//let clean_button = document.getElementById('clean_button');
+	//clean_button.addEventListener('click', () => {
 		
-		const span_results_list = new Array("one","two", "three", "four", "five", "six", "seven");
+		}
+	});
+
+	    function cleanField(){
+	    	const span_results_list = new Array("one","two", "three", "four", "five", "six", "seven");
 		event.preventDefault();
 		for(let i = 0; i < span_results_list.length; i++){
 			
-			
 			document.getElementById(`label${i + 1}`).value = "";
-			document.getElementById(`span_result_${span_results_list[i]}`).value = "00:00:00";	
-			
-			
-			//document.getElementById(`label${i}`).focus();
-			
-
+			document.getElementById(`span_result_${span_results_list[i]}`).value = 0;	
+	
 			document.getElementById(`span_ch_event`).innerHTML = "00:00:00";
 			document.getElementById(`span_delta_t`).innerHTML = "00:00:00";
 		}
-	});
+	    }
     </script>
   </body>
 </html>
