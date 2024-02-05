@@ -383,7 +383,7 @@
 		for(let i = 0; i < span_results_list.length; i++){
 			
 			document.getElementById(`label${i + 1}`).value = "";
-			document.getElementById(`span_result_${span_results_list[i]}`).value = "";	
+			document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = "00:00:00";	
 	
 			document.getElementById(`span_ch_event`).innerHTML = "00:00:00";
 			document.getElementById(`span_delta_t`).innerHTML = "00:00:00";
