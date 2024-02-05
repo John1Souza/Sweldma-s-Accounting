@@ -374,16 +374,11 @@
 			document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = result;
 			
 		}
-	});
-	//let clean_button = document.getElementById('clean_button');
-	//clean_button.addEventListener('click', () => {
-		
-		}
-	});
+		});
+
 
 	    function cleanField(){
 		const span_results_list = new Array("one","two", "three", "four", "five", "six", "seven");
-		event.preventDefault();
 		console.log(span_results_list.length);
 		for(let i = 0; i < span_results_list.length; i++){
 			
@@ -393,7 +388,7 @@
 			document.getElementById(`span_ch_event`).innerHTML = "00:00:00";
 			document.getElementById(`span_delta_t`).innerHTML = "00:00:00";
 		}
-	    }
+	    };
     </script>
   </body>
 </html>
