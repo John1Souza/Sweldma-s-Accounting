@@ -191,7 +191,7 @@
 
     <title>Sweldma Calculator</title>
   </head>
-  <body onload="cleanField()">
+  <body onload="cleanField(event)">
       <header>
 		<h1 id="header_text">CALCULADORA - HORAS COORDENAÇÃO</h1>
       </header>
@@ -275,7 +275,7 @@
             
 		<div id="button_wrapper">
 			<button type="submit" class="myButton" id="calc_button">Calcular</button>
-			<button type="submit" class="myButton" id="clean_button" onclick="cleanField()">Limpar</button>
+			<button type="submit" class="myButton" id="clean_button" onclick="cleanField(event)">Limpar</button>
 		</div>
            	
           </form>
