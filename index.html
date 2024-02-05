@@ -377,7 +377,8 @@
 		});
 
 
-	    function cleanField(){
+	    function cleanField(event){
+		    event.preventDefault();
 		const span_results_list = new Array("one","two", "three", "four", "five", "six", "seven");
 		for(let i = 0; i < span_results_list.length; i++){
 			
