@@ -378,10 +378,12 @@
 
 	    function cleanField(event){
 		    event.preventDefault();
-		const span_results_list = new Array("one","two", "three", "four", "five", "six", "seven");
+		const span_results_list = new Array("one","two", "three", "four", "five", "six", "seven", "eight");
 		for(let i = 0; i < span_results_list.length; i++){
+			if(i < 7){
+				document.getElementById(`label${i + 1}`).value = "";
+			}
 			
-			document.getElementById(`label${i + 1}`).value = "";
 			document.getElementById(`span_result_${span_results_list[i]}`).innerHTML = "00:00:00";	
 	
 			document.getElementById(`span_ch_event`).innerHTML = "00:00:00";
