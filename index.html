@@ -274,7 +274,7 @@
               </table>
             
 		<div id="button_wrapper">
-			<button type="submit" class="myButton" id="calc_button">Calcular</button>
+			<button type="submit" class="myButton" id="calc_button" onclick="calcField(event)">Calcular</button>
 			<button type="submit" class="myButton" id="clean_button" onclick="cleanField(event)">Limpar</button>
 		</div>
            	
@@ -301,8 +301,7 @@
 	let delta_t = 0;
     
 
-	let calc_button = document.getElementById('calc_button');
-	calc_button.addEventListener('click', () => {
+	function calcField() {
 		var live_input = document.getElementById('label1').value;
 		var page_input = document.getElementById('label2').value;
 		var slide_input = document.getElementById('label3').value;
